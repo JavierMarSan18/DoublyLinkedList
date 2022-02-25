@@ -1,92 +1,73 @@
 package main;
 
-import com.umg.data.structures.LinkedList.SinglyLinkedList;
-
+import com.umg.data.structures.LinkedList.DoublyLinkedList;
 import java.util.Scanner;
 
 public class Main {
-    static SinglyLinkedList singlyLinkedList = new SinglyLinkedList();
+    static DoublyLinkedList doublyLinkedList = new DoublyLinkedList();
     static Scanner read = new Scanner(System.in);
 
     public static void main(String[] args) {
-        try{
-            startMenu();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-    }
-
-    private static void startMenu(){
-        System.out.println("1.-Iniciar\n2.-Salir");
-        int opc = read.nextInt();
-        if(opc==1){
-            listMenu();
-        }
+        listMenu();
     }
 
     private static void listMenu(){
-        System.out.println("Lista enlazada");
+        System.out.println("Lista Doblemente Enlazada");
         System.out.println("1.-Insertar al Inicio");
         System.out.println("2.-Insertar al Final");
-        System.out.println("3.-Recorrer");
-        System.out.println("4.-Buscar Elemento");
-        System.out.println("5.-Borrar un Elemento");
-        System.out.println("6.-Atrás");
+        System.out.println("3.-Recorrer hacia adelante");
+        System.out.println("4.-Recorrer hacia atrás");
+        System.out.println("5.-Mostrar tamaño de la lista");
+        System.out.println("6.-Mostrar si la lista está vacía");
+        System.out.println("7.-Buscar elemento por valor");
+        System.out.println("8.-Buscar elemento por índice");
+        System.out.println("9.-Borrar un Elemento");
         System.out.println("0.-Salir");
         int opc = read.nextInt();
 
         switch (opc){
             case 1:
-                System.out.println("Ingresa el valor a insertar a la cabeza");
+                System.out.println("Ingresa el valor a insertar al inicio");
                 int value = read.nextInt();
-                singlyLinkedList.insertAtHead(value);
+                doublyLinkedList.insertAtHead(value);
                 listMenu();
                 break;
             case 2:
-                System.out.println("Ingresa el valor a insertar a la cola");
+                System.out.println("Ingresa el valor a insertar al final");
                 value = read.nextInt();
-                singlyLinkedList.insertAtTail(value);
+                doublyLinkedList.insertAtTail(value);
                 listMenu();
                 break;
             case 3:
-                singlyLinkedList.traverse();
+                doublyLinkedList.traverseForward();
                 listMenu();
                 break;
             case 4:
-                searchMenu();
+                doublyLinkedList.traverseBackward();
                 listMenu();
                 break;
             case 5:
-                deleteMenu();
+                System.out.println(doublyLinkedList.size());
                 listMenu();
                 break;
             case 6:
-                startMenu();
+                System.out.println(doublyLinkedList.isEmpty());
+                listMenu();
                 break;
-            default:
-                break;
-        }
-    }
-
-    private static void searchMenu(){
-        System.out.println("Buscar por:");
-        System.out.println("1.-Index\n2.-Valor\n3.-Atrás");
-        int opc = read.nextInt();
-
-        switch (opc){
-            case 1:
-                System.out.println("Ingresa el indice de busqueda");
-                int value = read.nextInt();
-                System.out.println(singlyLinkedList.searchByIndex(value));
-                searchMenu();
-                break;
-            case 2:
+            case 7:
                 System.out.println("Ingresa valor buscado");
                 value = read.nextInt();
-                System.out.println(singlyLinkedList.searchByValue(value));
-                searchMenu();
+                System.out.println(doublyLinkedList.searchByValue(value));
+                listMenu();
                 break;
-            case 3:
+            case 8:
+                System.out.println("Ingresa el índice de busqueda");
+                value = read.nextInt();
+                System.out.println(doublyLinkedList.searchByIndex(value));
+                listMenu();
+                break;
+            case 9:
+                deleteMenu();
                 listMenu();
                 break;
             default:
@@ -96,22 +77,22 @@ public class Main {
 
     private static void deleteMenu(){
         System.out.println("Eliminar de:");
-        System.out.println("1.-Cabeza\n2.-Cola\n3.-Posición\n4.-Atrás");
+        System.out.println("1.-Inicio\n2.-Final\n3.-Posición\n4.-Volver");
         int opc = read.nextInt();
 
         switch (opc){
             case 1:
-                singlyLinkedList.deleteFromHead();
+                doublyLinkedList.deleteFromHead();
                 deleteMenu();
                 break;
             case 2:
-                singlyLinkedList.deleteFromTail();
+                doublyLinkedList.deleteFromTail();
                 deleteMenu();
                 break;
             case 3:
                 System.out.println("Ingresa la posición del elemento a eliminar");
                 int index = read.nextInt();
-                singlyLinkedList.deleteFromPosition(index);
+                doublyLinkedList.deleteFromPosition(index);
                 deleteMenu();
                 break;
             default:
