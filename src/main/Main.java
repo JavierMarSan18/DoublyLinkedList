@@ -61,13 +61,13 @@ public class Main {
             case 7:
                 System.out.println("\nIngresa valor buscado");
                 value = read.nextInt();
-                System.out.println(doublyLinkedList.searchByValue(value));
+                System.out.println("Valor: "+doublyLinkedList.searchByValue(value));
                 listMenu();
                 break;
             case 8:
                 System.out.println("\nIngresa el índice de busqueda");
-                value = read.nextInt();
-                System.out.println(doublyLinkedList.searchByIndex(value));
+                int index = read.nextInt();
+                System.out.println("Valor: "+doublyLinkedList.searchByIndex(index));
                 listMenu();
                 break;
             case 9:
